@@ -8,15 +8,15 @@ log = []
 @Client.on_message(filters.command("tagalert on", ".") & filters.me)
 async def set_no_log_p_m(client: Client, message: Message):
     if LOG_GROUP != -100:
-        if not message.chat.id in log:
+        if message.chat.id not in log:
             log.append(message.chat.id)
             await message.edit("**Tag alert Activated Successfully**")
 
 @Client.on_message(filters.command("tagalert off", ".") & filters.me)
 async def set_no_log_p_m(client: Client, message: Message):
-        if not message.chat.id in log:
-            log.remove(message.chat.id)
-            await message.edit("**Tag alert DeActivated Successfully**")
+    if message.chat.id not in log:
+        log.remove(message.chat.id)
+        await message.edit("**Tag alert DeActivated Successfully**")
 
 if log:
  @Client.on_message(filters.group & filters.mentioned & filters.incoming)

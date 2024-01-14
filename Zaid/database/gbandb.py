@@ -13,9 +13,7 @@ async def gban_list() -> int:
 
 async def gban_info(user_id: int) -> bool:
     user = await gbansdb.find_one({"user_id": user_id})
-    if not user:
-        return False
-    return True
+    return bool(user)
 
 
 async def gban_user(user_id: int):
